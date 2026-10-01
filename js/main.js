@@ -1,7 +1,7 @@
 /* Site behavior — leave this file alone.
    - Footer year
    - Mobile menu open/close
-   - Auto-hide shows 3 days after their <time datetime>
+   - Auto-hide shows 3 days after their <time datetime>; sort soonest first
    - Highlights the nav link for the section you're viewing
 */
 (() => {
@@ -55,13 +55,21 @@
 
   const showList = document.querySelector(".show-list");
   if (showList) {
-    showList.querySelectorAll("li").forEach((item) => {
+    const items = [...showList.querySelectorAll("li")];
+    items.forEach((item) => {
       const iso = item.querySelector("time")?.getAttribute("datetime");
       const lastVisible = iso ? addDaysIso(iso, 3) : null;
       if (!lastVisible || todayIso > lastVisible) item.remove();
     });
 
-    if (!showList.children.length) {
+    const remaining = [...showList.querySelectorAll("li")].sort((a, b) => {
+      const aIso = a.querySelector("time")?.getAttribute("datetime") || "";
+      const bIso = b.querySelector("time")?.getAttribute("datetime") || "";
+      return aIso.localeCompare(bIso);
+    });
+    remaining.forEach((item) => showList.appendChild(item));
+
+    if (!remaining.length) {
       const empty = document.createElement("p");
       empty.className = "show-empty";
       empty.textContent = "Check back soon";
