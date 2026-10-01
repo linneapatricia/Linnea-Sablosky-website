@@ -1,0 +1,529 @@
+:root {
+  /* Primaries pulled from the photo set: red jacket, sun/trees, sky */
+  --ink: #0a0e1a;
+  --paper: #f7f8fc;
+  --red: #e20613;
+  --red-soft: #ff4a3d;
+  --yellow: #ffcc00;
+  --blue: #1a6fd4;
+  --blue-deep: #0d3f8f;
+  --font-display: "Bricolage Grotesque", system-ui, sans-serif;
+  --font-body: "Source Serif 4", Georgia, serif;
+  --pad: clamp(1.25rem, 4vw, 3rem);
+  --measure: 40rem;
+  --header-h: 3.5rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-h) + 0.75rem);
+  background: var(--ink);
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 1.125rem;
+  line-height: 1.55;
+  color: var(--ink);
+  background: transparent;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+}
+
+a:hover {
+  text-decoration-thickness: 0.12em;
+}
+
+a:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+
+/* Fixed photo — sits under all content; slabs are translucent over it */
+.bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-color: var(--ink);
+  background-image:
+    linear-gradient(
+      color-mix(in srgb, var(--ink) 18%, transparent),
+      color-mix(in srgb, var(--ink) 18%, transparent)
+    ),
+    image-set(
+      url("../images/background.webp") type("image/webp"),
+      url("../images/background.jpg") type("image/jpeg")
+    );
+  background-size: cover;
+  background-position: center 35%;
+  background-repeat: no-repeat;
+}
+
+.bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.2;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+.site-header,
+main,
+.site-footer {
+  position: relative;
+  z-index: 1;
+}
+
+.photo-bleed {
+  margin: 0;
+  padding: 0;
+  background: transparent;
+}
+
+.photo-bleed picture,
+.photo-bleed img {
+  width: 100%;
+  height: clamp(16rem, 58vw, 36rem);
+  object-fit: cover;
+  object-position: center 28%;
+  display: block;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-bottom: 1rem;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem 1.5rem;
+  min-height: var(--header-h);
+  padding: 0.85rem var(--pad);
+  background: color-mix(in srgb, var(--ink) 72%, transparent);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: var(--paper);
+  border-bottom: 1px solid color-mix(in srgb, var(--paper) 18%, transparent);
+}
+
+.brand {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.05rem;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.jump {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.85rem;
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.jump a {
+  text-decoration: none;
+  opacity: 0.72;
+  transition: opacity 0.2s ease, color 0.2s ease;
+}
+
+.jump a:hover,
+.jump a.is-active {
+  opacity: 1;
+  color: var(--yellow);
+}
+
+.hero {
+  position: relative;
+  min-height: calc(100svh - var(--header-h));
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: var(--pad);
+  padding-bottom: clamp(2.5rem, 8vh, 5rem);
+  color: var(--paper);
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    180deg,
+    transparent 35%,
+    color-mix(in srgb, var(--ink) 55%, transparent) 72%,
+    color-mix(in srgb, var(--ink) 72%, transparent) 100%
+  );
+  pointer-events: none;
+}
+
+.hero-name {
+  margin: 0 0 0.4rem;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(3rem, 12vw, 7.5rem);
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  max-width: 12ch;
+}
+
+.hero-line {
+  margin: 0 0 1.75rem;
+  font-size: clamp(1rem, 2.2vw, 1.25rem);
+  opacity: 0.88;
+  max-width: 28rem;
+}
+
+.hero-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 0;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.7rem 1.1rem;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: var(--yellow);
+  color: var(--ink);
+  border: 2px solid var(--yellow);
+  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--paper);
+  border-color: color-mix(in srgb, var(--paper) 55%, transparent);
+}
+
+.btn-ghost:hover {
+  border-color: var(--paper);
+  background: color-mix(in srgb, var(--paper) 12%, transparent);
+}
+
+.btn-ink {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+}
+
+.btn-ghost-ink {
+  background: transparent;
+  color: var(--ink);
+  border-color: color-mix(in srgb, var(--ink) 35%, transparent);
+}
+
+.btn-ghost-ink:hover {
+  border-color: var(--ink);
+}
+
+.slab {
+  position: relative;
+  padding: clamp(3rem, 10vh, 6rem) var(--pad);
+  backdrop-filter: blur(14px) saturate(1.15);
+  -webkit-backdrop-filter: blur(14px) saturate(1.15);
+}
+
+@media (min-width: 900px) {
+  .slab {
+    margin-inline: clamp(1.25rem, 7vw, 5rem);
+  }
+
+  .photo-bleed {
+    margin-inline: clamp(1.25rem, 7vw, 5rem);
+  }
+}
+
+.slab-inner {
+  max-width: var(--measure);
+}
+
+/* Translucent primaries so the fixed photo keeps moving behind content */
+.slab-red {
+  background: color-mix(in srgb, var(--red) 58%, transparent);
+  color: var(--paper);
+}
+
+.slab-red-soft {
+  background: color-mix(in srgb, var(--red-soft) 55%, transparent);
+  color: var(--ink);
+}
+
+.slab-blue {
+  background: color-mix(in srgb, var(--blue) 58%, transparent);
+  color: var(--paper);
+}
+
+.slab-blue-deep {
+  background: color-mix(in srgb, var(--blue-deep) 60%, transparent);
+  color: var(--paper);
+}
+
+.slab-yellow {
+  background: color-mix(in srgb, var(--yellow) 62%, transparent);
+  color: var(--ink);
+}
+
+.slab-ink {
+  background: color-mix(in srgb, var(--ink) 55%, transparent);
+  color: var(--paper);
+}
+
+/* Warm wash instead of sterile white — picks up the flare photo */
+.slab-frost {
+  background: color-mix(in srgb, #ffd56a 32%, transparent);
+  color: var(--ink);
+  text-shadow: 0 1px 0 color-mix(in srgb, var(--paper) 35%, transparent);
+}
+
+.slab-red .btn,
+.slab-blue .btn,
+.slab-blue-deep .btn,
+.slab-ink .btn {
+  background: var(--yellow);
+  color: var(--ink);
+  border-color: var(--yellow);
+}
+
+.slab-red .btn-ink,
+.slab-blue .btn-ink,
+.slab-blue-deep .btn-ink,
+.slab-frost .btn-ink {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+}
+
+.slab-yellow .btn-ink {
+  background: var(--ink);
+  color: var(--yellow);
+  border-color: var(--ink);
+}
+
+.slab-frost .btn-ghost-ink {
+  color: var(--ink);
+  border-color: color-mix(in srgb, var(--ink) 40%, transparent);
+}
+
+.slab-red a:not(.btn),
+.slab-blue a:not(.btn),
+.slab-blue-deep a:not(.btn),
+.slab-ink a:not(.btn) {
+  text-decoration-color: var(--yellow);
+}
+
+.slab-red .vid-list {
+  border-top-color: color-mix(in srgb, var(--paper) 28%, transparent);
+}
+
+.eyebrow {
+  margin: 0 0 0.5rem;
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+.slab h2 {
+  margin: 0 0 1.25rem;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(2.25rem, 6vw, 3.75rem);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+}
+
+.prose p {
+  margin: 0 0 1rem;
+  max-width: 38rem;
+}
+
+.prose p:last-child {
+  margin-bottom: 0;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 1.5rem 0 0;
+}
+
+.vid-list {
+  margin-top: 2.25rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid color-mix(in srgb, var(--ink) 22%, transparent);
+}
+
+.vid-list ul,
+.link-list,
+.show-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.vid-list li,
+.link-list li {
+  margin: 0.55rem 0;
+}
+
+.hire-list {
+  list-style: none;
+  margin: 0.75rem 0 0;
+  padding: 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.05rem, 2.4vw, 1.25rem);
+  letter-spacing: -0.015em;
+  line-height: 1.35;
+}
+
+.hire-list li {
+  margin: 0;
+  padding: 0.7rem 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--ink) 18%, transparent);
+}
+
+.hire-list li:first-child {
+  border-top: 1px solid color-mix(in srgb, var(--ink) 18%, transparent);
+}
+
+.hire-list strong {
+  font-weight: 800;
+}
+
+.vid-list a,
+.link-list a,
+.show-link,
+.social a {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: -0.01em;
+}
+
+.show-list li {
+  display: grid;
+  gap: 0.25rem 1.25rem;
+  padding: 1.15rem 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--paper) 22%, transparent);
+}
+
+.show-list li:first-child {
+  border-top: 1px solid color-mix(in srgb, var(--paper) 22%, transparent);
+}
+
+.show-list time {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.05rem;
+  letter-spacing: -0.01em;
+  color: var(--yellow);
+}
+
+.show-what {
+  font-size: 1.05rem;
+}
+
+.show-link {
+  color: var(--yellow);
+  width: fit-content;
+}
+
+@media (min-width: 640px) {
+  .show-list li {
+    grid-template-columns: 11rem 1fr auto;
+    align-items: baseline;
+  }
+}
+
+.social {
+  margin: 1.75rem 0 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+}
+
+.site-footer {
+  padding: 1.5rem var(--pad) 2.5rem;
+  color: var(--paper);
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  opacity: 0.65;
+}
+
+@media (max-width: 720px) {
+  .site-header {
+    position: sticky;
+  }
+
+  .jump {
+    width: 100%;
+    gap: 0.45rem 0.7rem;
+  }
+
+  /* Fixed multi-layer bg can jank hard on mobile Safari */
+  .bg {
+    position: absolute;
+    min-height: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .btn:hover {
+    transform: none;
+  }
+}
