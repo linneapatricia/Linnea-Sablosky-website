@@ -7,8 +7,8 @@
   --yellow: #ffcc00;
   --blue: #1a6fd4;
   --blue-deep: #0d3f8f;
-  --font-display: "Oswald", "Arial Narrow", sans-serif;
-  --font-body: "IBM Plex Sans", "Helvetica Neue", sans-serif;
+  --font-display: "Syne", system-ui, sans-serif;
+  --font-body: "Source Serif 4", Georgia, serif;
   --pad: clamp(1.25rem, 4vw, 3rem);
   --measure: 40rem;
   --header-h: 3.5rem;
