@@ -1,6 +1,6 @@
 /* Site behavior — leave this file alone.
    - Footer year
-   - Mobile menu open/close
+   - Mobile menu open/close (focus trap + inert while open)
    - Auto-hide shows 3 days after their <time datetime>; sort soonest first
    - Highlights the nav link for the section you're viewing
 */
@@ -12,13 +12,41 @@
   const toggle = document.querySelector(".nav-toggle");
   const nav = document.getElementById("site-nav");
   const toggleText = toggle?.querySelector(".nav-toggle-text");
+  const brand = document.querySelector(".brand");
+  const main = document.querySelector("main");
+  const footer = document.querySelector(".site-footer");
+  const skip = document.querySelector(".skip-link");
+  const mobileNav = window.matchMedia("(max-width: 720px)");
+
+  const menuFocusables = () =>
+    [toggle, ...(nav ? [...nav.querySelectorAll("a")] : [])].filter(Boolean);
+
+  const setBackdropInert = (inert) => {
+    [main, footer, brand, skip].forEach((el) => {
+      if (el) el.inert = inert;
+    });
+  };
 
   const setOpen = (open) => {
     if (!top || !toggle) return;
+    const wasOpen = top.classList.contains("is-open");
     top.classList.toggle("is-open", open);
     document.body.classList.toggle("nav-open", open);
     toggle.setAttribute("aria-expanded", open ? "true" : "false");
     if (toggleText) toggleText.textContent = open ? "Close" : "Menu";
+
+    if (!mobileNav.matches) {
+      setBackdropInert(false);
+      return;
+    }
+
+    setBackdropInert(open);
+
+    if (open) {
+      requestAnimationFrame(() => nav?.querySelector("a")?.focus());
+    } else if (wasOpen) {
+      toggle.focus();
+    }
   };
 
   toggle?.addEventListener("click", () => {
@@ -30,7 +58,32 @@
   });
 
   document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") setOpen(false);
+    const menuOpen = top?.classList.contains("is-open") && mobileNav.matches;
+
+    if (event.key === "Escape" && menuOpen) {
+      setOpen(false);
+      return;
+    }
+
+    if (event.key !== "Tab" || !menuOpen) return;
+
+    const focusables = menuFocusables();
+    if (focusables.length < 2) return;
+
+    const first = focusables[0];
+    const last = focusables[focusables.length - 1];
+
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  });
+
+  mobileNav.addEventListener("change", () => {
+    if (!mobileNav.matches) setOpen(false);
   });
 
   // Keep each show through its datetime + 3 calendar days, then remove it.
@@ -96,7 +149,10 @@
       if (!visible) return;
       const id = visible.target.id;
       links.forEach((link) => {
-        link.classList.toggle("is-active", link.getAttribute("href") === `#${id}`);
+        const active = link.getAttribute("href") === `#${id}`;
+        link.classList.toggle("is-active", active);
+        if (active) link.setAttribute("aria-current", "location");
+        else link.removeAttribute("aria-current");
       });
     },
     {

@@ -53,6 +53,32 @@ a:focus-visible {
   outline-offset: 3px;
 }
 
+/* Keyboard-only: first Tab shows this, jumps past sticky chrome into main */
+.skip-link {
+  position: absolute;
+  left: var(--pad);
+  top: 0.75rem;
+  z-index: 100;
+  padding: 0.55rem 0.85rem;
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: var(--yellow);
+  color: var(--ink);
+  border: 2px solid var(--yellow);
+  transform: translateY(-160%);
+  transition: transform 0.15s ease;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+  outline: 2px solid var(--paper);
+  outline-offset: 3px;
+}
+
 /* Fixed photo — sits under all content; slabs are translucent over it */
 .bg {
   position: fixed;
@@ -115,6 +141,10 @@ main {
   flex-direction: column;
   gap: 1rem;
   padding-bottom: 1rem;
+}
+
+main:focus {
+  outline: none;
 }
 
 .site-top {
@@ -226,7 +256,8 @@ main {
   position: fixed;
   top: 0;
   right: 0;
-  z-index: 21;
+  /* Above .site-top (22) so links aren't covered by the frosted bar */
+  z-index: 23;
   align-items: center;
   min-height: var(--header-h);
   padding: 0.85rem var(--pad);
@@ -589,6 +620,8 @@ main {
     top: 0;
     bottom: 0;
     width: 100%;
+    /* Under .site-top so Menu/Close stays clickable */
+    z-index: 21;
     flex-direction: column;
     flex-wrap: nowrap;
     justify-content: center;
