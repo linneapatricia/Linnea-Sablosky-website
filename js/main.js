@@ -1,3 +1,8 @@
+/* Site behavior — leave this file alone.
+   - Footer year
+   - Mobile menu open/close
+   - Highlights the nav link for the section you're viewing
+*/
 (() => {
   const year = document.getElementById("year");
   if (year) year.textContent = String(new Date().getFullYear());

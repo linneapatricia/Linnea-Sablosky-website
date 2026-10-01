@@ -1,5 +1,5 @@
+/* Brand colors — change these if you want a different palette. Leave the rest of this file alone. */
 :root {
-  /* Primaries pulled from the photo set: red jacket, sun/trees, sky */
   --ink: #0a0e1a;
   --paper: #f7f8fc;
   --red: #e20613;
@@ -330,16 +330,6 @@ main {
   border-color: var(--ink);
 }
 
-.btn-ghost-ink {
-  background: transparent;
-  color: var(--ink);
-  border-color: color-mix(in srgb, var(--ink) 35%, transparent);
-}
-
-.btn-ghost-ink:hover {
-  border-color: var(--ink);
-}
-
 .slab {
   position: relative;
   padding: clamp(3rem, 10vh, 6rem) var(--pad);
@@ -423,20 +413,11 @@ main {
   border-color: var(--ink);
 }
 
-.slab-frost .btn-ghost-ink {
-  color: var(--ink);
-  border-color: color-mix(in srgb, var(--ink) 40%, transparent);
-}
-
 .slab-red a:not(.btn),
 .slab-blue a:not(.btn),
 .slab-blue-deep a:not(.btn),
 .slab-ink a:not(.btn) {
   text-decoration-color: var(--yellow);
-}
-
-.slab-red .vid-list {
-  border-top-color: color-mix(in srgb, var(--paper) 28%, transparent);
 }
 
 .eyebrow {
@@ -475,13 +456,6 @@ main {
   margin: 1.5rem 0 0;
 }
 
-.vid-list {
-  margin-top: 2.25rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid color-mix(in srgb, var(--ink) 22%, transparent);
-}
-
-.vid-list ul,
 .link-list,
 .show-list {
   list-style: none;
@@ -489,7 +463,6 @@ main {
   padding: 0;
 }
 
-.vid-list li,
 .link-list li {
   margin: 0.55rem 0;
 }
@@ -519,7 +492,6 @@ main {
   font-weight: 700;
 }
 
-.vid-list a,
 .link-list a,
 .show-link,
 .social a {

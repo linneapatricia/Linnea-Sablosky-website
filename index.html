@@ -16,6 +16,7 @@
 <body>
   <div class="bg" aria-hidden="true"></div>
 
+  <!-- Sticky top bar: brand name + Menu button (mobile) -->
   <div class="site-top">
     <a class="brand" href="#top">Linnea Sablosky</a>
     <button
@@ -28,6 +29,12 @@
       <span class="nav-toggle-bars" aria-hidden="true"></span>
     </button>
   </div>
+
+  <!--
+    JUMP NAV — links to each section below.
+    If you add/remove a whole section, add/remove its link here too
+    (href must match the section's id, e.g. href="#shows" ↔ id="shows").
+  -->
   <nav class="jump" id="site-nav" aria-label="On this page">
     <a href="#lean">Lean</a>
     <a href="#shows">Shows</a>
@@ -45,6 +52,13 @@
       <p class="hero-line">Musician · Los Angeles</p>
     </section>
 
+    <!--
+      LEAN (album) — edit the blurb in <div class="prose">.
+      When you have a listen/buy URL, add a button after the blurb:
+        <p class="actions">
+          <a class="btn btn-ink" href="YOUR-URL-HERE">Listen / buy</a>
+        </p>
+    -->
     <section class="slab slab-red" id="lean">
       <div class="slab-inner">
         <p class="eyebrow">New release</p>
@@ -52,13 +66,19 @@
         <div class="prose">
           <p>Linnea Sablosky’s debut album, <em>Lean</em>, puts a wild imagination on vivid display. With co-production from Michael Sachs, the record is an indelible union of collective strengths: gorgeous woodwinds and eccentric instrumentation, choral arrangements that swell and split, crooked rhythms, and pop songs as ornate collages. Each track perfectly balances innovation and simplicity while Sablosky’s sweetly unaffected voice gleams throughout, crafty and shimmering. Weird powers grow strange flowers, and with <em>Lean</em>, Sablosky’s artistry is in full bloom.</p>
         </div>
-        <!-- TODO: album listen / buy URL when ready -->
-        <p class="actions">
-          <a class="btn btn-ink" href="mailto:linneapatricia@gmail.com?subject=Lean%20album">Ask for a listen</a>
-        </p>
       </div>
     </section>
 
+    <!--
+      SHOWS — add / edit / delete <li> blocks below. Newest at the top.
+      Copy an existing block and fill in:
+        • <time datetime="YYYY-MM-DD"> — machine date (first night is fine for multi-day)
+        • text inside <time> — what people see (e.g. Oct 22, 23 &amp; 25)
+        • <span class="show-what"> — who / where / what
+        • <a class="show-link" href="..."> — optional tickets link; delete that line if none
+      Tip: write & as &amp; in HTML.
+      Delete past shows when they’re done.
+    -->
     <section class="slab slab-blue" id="shows">
       <div class="slab-inner">
         <p class="eyebrow">Upcoming</p>
@@ -77,6 +97,10 @@
       </div>
     </section>
 
+    <!--
+      LIVE VIDEOS — each <li> is one YouTube link.
+      Copy a line, paste your URL in href="...", change the link text.
+    -->
     <section class="slab slab-yellow" id="live">
       <div class="slab-inner">
         <p class="eyebrow">YouTube</p>
@@ -89,6 +113,9 @@
       </div>
     </section>
 
+    <!--
+      MORE MUSIC — Bandcamp / album links. Same pattern as Live videos above.
+    -->
     <section class="slab slab-ink" id="listen">
       <div class="slab-inner">
         <p class="eyebrow">Elsewhere</p>
@@ -101,6 +128,7 @@
       </div>
     </section>
 
+    <!-- Portrait photo between Listen and Bio. Files live in images/ -->
     <figure class="photo-bleed">
       <picture>
         <source srcset="images/portrait.webp" type="image/webp">
@@ -114,6 +142,7 @@
       </picture>
     </figure>
 
+    <!-- BIO — edit the paragraph below. -->
     <section class="slab slab-frost" id="bio">
       <div class="slab-inner">
         <p class="eyebrow">About</p>
@@ -124,6 +153,10 @@
       </div>
     </section>
 
+    <!--
+      HIRE ME — each <li> is one offering.
+      Add / remove / reword lines as needed. Use <strong>…</strong> to bold a lead phrase.
+    -->
     <section class="slab slab-red-soft" id="hire">
       <div class="slab-inner">
         <p class="eyebrow">Book</p>
@@ -149,6 +182,10 @@
       </div>
     </section>
 
+    <!--
+      YOSEMITE CHOIR — update the season blurb in <div class="prose">.
+      Membership form: paste the new Google Form URL into the href="..." below.
+    -->
     <section class="slab slab-blue-deep" id="choir">
       <div class="slab-inner">
         <p class="eyebrow">Community</p>
@@ -162,6 +199,12 @@
       </div>
     </section>
 
+    <!--
+      CONTACT — newsletter mailto, plain email, Instagram.
+      To change Instagram: edit the href and the visible @handle text.
+      When Bandcamp is ready, replace “Bandcamp coming soon” with a link, e.g.
+        <a href="YOUR-BANDCAMP-URL">Bandcamp</a>
+    -->
     <section class="slab slab-ink" id="contact">
       <div class="slab-inner">
         <p class="eyebrow">Stay in touch</p>
