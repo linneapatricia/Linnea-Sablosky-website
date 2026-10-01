@@ -14,7 +14,7 @@ One-page static site deployed with GitHub Pages via Actions.
 
 - `index.html` — all page copy. Change the words.
 - `css/main.css` — colors at the top (`:root`)
-- `js/main.js` — jump-nav highlight only. Leave alone unless asked.
+- `js/main.js` — menu, nav highlight, auto-hides shows 3 days past `datetime`. Leave alone unless asked.
 - `images/` — drop photos here, then point at them from `index.html` / `css/main.css`
 - Do not edit `.github/`
 
