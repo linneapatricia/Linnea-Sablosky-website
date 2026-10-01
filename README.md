@@ -25,7 +25,7 @@ Review URL (until a custom domain): `https://linneapatricia.github.io/Linnea-Sab
 - Fixed atmospheric background; solid color slabs scroll over it (Hana structure + Brìghde boldness)
 - Jump nav anchors down the page
 - Palette: primary red / yellow / blue (from the photo set) + ink / paper
-- Type: Bricolage Grotesque (display) + Source Serif 4 (body)
+- Type: Oswald (display, all-caps) + IBM Plex Sans (body)
 - Photos: drop files in `images/`. Web-sized copies are what the site uses. Camera originals can live in `images/originals/` (gitignored).
 - Current: `background` = fixed hero atmosphere; `portrait` = full-bleed band before Bio.
 - *Lean* listen/buy URL still TBD in the Lean section

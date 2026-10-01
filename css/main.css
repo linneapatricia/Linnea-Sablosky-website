@@ -7,8 +7,8 @@
   --yellow: #ffcc00;
   --blue: #1a6fd4;
   --blue-deep: #0d3f8f;
-  --font-display: "Bricolage Grotesque", system-ui, sans-serif;
-  --font-body: "Source Serif 4", Georgia, serif;
+  --font-display: "Oswald", "Arial Narrow", sans-serif;
+  --font-body: "IBM Plex Sans", "Helvetica Neue", sans-serif;
   --pad: clamp(1.25rem, 4vw, 3rem);
   --measure: 40rem;
   --header-h: 3.5rem;
@@ -133,9 +133,9 @@ main {
 
 .brand {
   font-family: var(--font-display);
-  font-weight: 800;
+  font-weight: 700;
   font-size: 1.05rem;
-  letter-spacing: -0.02em;
+  letter-spacing: 0.06em;
   text-decoration: none;
   text-transform: uppercase;
 }
@@ -191,10 +191,10 @@ main {
 .hero-name {
   margin: 0 0 0.4rem;
   font-family: var(--font-display);
-  font-weight: 800;
+  font-weight: 700;
   font-size: clamp(3rem, 12vw, 7.5rem);
-  line-height: 0.9;
-  letter-spacing: -0.04em;
+  line-height: 0.92;
+  letter-spacing: 0.02em;
   text-transform: uppercase;
   max-width: 12ch;
 }
@@ -366,10 +366,10 @@ main {
 .slab h2 {
   margin: 0 0 1.25rem;
   font-family: var(--font-display);
-  font-weight: 800;
+  font-weight: 700;
   font-size: clamp(2.25rem, 6vw, 3.75rem);
-  line-height: 0.95;
-  letter-spacing: -0.03em;
+  line-height: 0.98;
+  letter-spacing: 0.03em;
   text-transform: uppercase;
 }
 
@@ -430,7 +430,7 @@ main {
 }
 
 .hire-list strong {
-  font-weight: 800;
+  font-weight: 700;
 }
 
 .vid-list a,
@@ -456,9 +456,9 @@ main {
 
 .show-list time {
   font-family: var(--font-display);
-  font-weight: 800;
+  font-weight: 700;
   font-size: 1.05rem;
-  letter-spacing: -0.01em;
+  letter-spacing: 0.04em;
   color: var(--yellow);
 }
 
