@@ -367,7 +367,7 @@ main:focus {
   -webkit-backdrop-filter: blur(14px) saturate(1.15);
 }
 
-@media (min-width: 900px) {
+@media (min-width: 800px) {
   .slab {
     margin-inline: clamp(1.25rem, 7vw, 5rem);
   }
@@ -598,7 +598,8 @@ main:focus {
   opacity: 0.65;
 }
 
-@media (max-width: 720px) {
+/* Hamburger earlier than true “phone” — brand + 8 jump links need more space */
+@media (max-width: 800px) {
   .site-top {
     flex-wrap: nowrap;
   }

@@ -16,7 +16,7 @@
   const main = document.querySelector("main");
   const footer = document.querySelector(".site-footer");
   const skip = document.querySelector(".skip-link");
-  const mobileNav = window.matchMedia("(max-width: 720px)");
+  const mobileNav = window.matchMedia("(max-width: 800px)");
 
   const menuFocusables = () =>
     [toggle, ...(nav ? [...nav.querySelectorAll("a")] : [])].filter(Boolean);
