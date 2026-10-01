@@ -2,6 +2,31 @@
   const year = document.getElementById("year");
   if (year) year.textContent = String(new Date().getFullYear());
 
+  const top = document.querySelector(".site-top");
+  const toggle = document.querySelector(".nav-toggle");
+  const nav = document.getElementById("site-nav");
+  const toggleText = toggle?.querySelector(".nav-toggle-text");
+
+  const setOpen = (open) => {
+    if (!top || !toggle) return;
+    top.classList.toggle("is-open", open);
+    document.body.classList.toggle("nav-open", open);
+    toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    if (toggleText) toggleText.textContent = open ? "Close" : "Menu";
+  };
+
+  toggle?.addEventListener("click", () => {
+    setOpen(!top.classList.contains("is-open"));
+  });
+
+  nav?.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => setOpen(false));
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") setOpen(false);
+  });
+
   const links = [...document.querySelectorAll(".jump a")];
   const sections = links
     .map((link) => {

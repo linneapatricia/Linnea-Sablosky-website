@@ -84,11 +84,15 @@ a:focus-visible {
   pointer-events: none;
 }
 
-.site-header,
+.site-top,
 main,
 .site-footer {
   position: relative;
   z-index: 1;
+}
+
+.site-top {
+  z-index: 22;
 }
 
 .photo-bleed {
@@ -113,22 +117,32 @@ main {
   padding-bottom: 1rem;
 }
 
-.site-header {
+.site-top {
   position: sticky;
   top: 0;
-  z-index: 20;
+  z-index: 22;
   display: flex;
   flex-wrap: wrap;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
   gap: 0.75rem 1.5rem;
   min-height: var(--header-h);
   padding: 0.85rem var(--pad);
+  color: var(--paper);
+  /* Frost on ::before so position:fixed menu isn't trapped */
+  background: transparent;
+  border-bottom: 1px solid color-mix(in srgb, var(--paper) 18%, transparent);
+}
+
+.site-top::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
   background: color-mix(in srgb, var(--ink) 72%, transparent);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  color: var(--paper);
-  border-bottom: 1px solid color-mix(in srgb, var(--paper) 18%, transparent);
+  pointer-events: none;
 }
 
 .brand {
@@ -140,6 +154,64 @@ main {
   text-transform: uppercase;
 }
 
+.nav-toggle {
+  display: none;
+  align-items: center;
+  gap: 0.55rem;
+  margin: 0;
+  padding: 0.35rem 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.nav-toggle:focus-visible {
+  outline: 2px solid var(--yellow);
+  outline-offset: 4px;
+}
+
+.nav-toggle-bars {
+  position: relative;
+  display: block;
+  width: 1.35rem;
+  height: 0.85rem;
+}
+
+.nav-toggle-bars::before,
+.nav-toggle-bars::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: currentColor;
+  transition: transform 0.2s ease, top 0.2s ease;
+}
+
+.nav-toggle-bars::before {
+  top: 0.15rem;
+}
+
+.nav-toggle-bars::after {
+  top: 0.55rem;
+}
+
+.site-top.is-open .nav-toggle-bars::before {
+  top: 0.35rem;
+  transform: rotate(45deg);
+}
+
+.site-top.is-open .nav-toggle-bars::after {
+  top: 0.35rem;
+  transform: rotate(-45deg);
+}
+
 .jump {
   display: flex;
   flex-wrap: wrap;
@@ -149,6 +221,16 @@ main {
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
+  color: var(--paper);
+  /* Desktop: sit in the sticky bar on the right, outside filtered chrome */
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 21;
+  align-items: center;
+  min-height: var(--header-h);
+  padding: 0.85rem var(--pad);
+  box-sizing: border-box;
 }
 
 .jump a {
@@ -196,7 +278,11 @@ main {
   line-height: 0.92;
   letter-spacing: 0.02em;
   text-transform: uppercase;
-  max-width: 12ch;
+  max-width: 11ch;
+}
+
+.hero-break {
+  display: block;
 }
 
 .hero-line {
@@ -495,19 +581,72 @@ main {
 }
 
 @media (max-width: 720px) {
-  .site-header {
-    position: sticky;
+  .site-top {
+    flex-wrap: nowrap;
+  }
+
+  .site-top::before {
+    background: color-mix(in srgb, var(--ink) 88%, transparent);
+  }
+
+  .nav-toggle {
+    display: inline-flex;
+    margin-left: auto;
+    z-index: 22;
   }
 
   .jump {
+    display: none;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
     width: 100%;
-    gap: 0.45rem 0.7rem;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 0.85rem;
+    min-height: 100svh;
+    margin: 0;
+    padding: calc(var(--header-h) + 1.5rem) var(--pad) 2rem;
+    overflow-y: auto;
+    background: color-mix(in srgb, var(--ink) 94%, transparent);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    font-size: clamp(1.35rem, 6.5vw, 1.85rem);
+    letter-spacing: 0.06em;
+    text-align: right;
   }
 
-  /* Fixed multi-layer bg can jank hard on mobile Safari */
+  body.nav-open .jump {
+    display: flex;
+  }
+
+  .jump a {
+    opacity: 1;
+    width: fit-content;
+  }
+
+  body.nav-open {
+    overflow: hidden;
+  }
+
   .bg {
-    position: absolute;
-    min-height: 100%;
+    position: fixed;
+    inset: 0;
+    min-height: 100svh;
+  }
+
+  .hero {
+    min-height: calc(100svh - var(--header-h));
+    overflow: hidden;
+  }
+
+  .hero-name {
+    max-width: none;
+    width: 100%;
+    font-size: clamp(2.75rem, 13vw, 4rem);
   }
 }
 
@@ -518,5 +657,10 @@ main {
 
   .btn:hover {
     transform: none;
+  }
+
+  .nav-toggle-bars::before,
+  .nav-toggle-bars::after {
+    transition: none;
   }
 }

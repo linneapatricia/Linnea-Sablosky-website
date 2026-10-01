@@ -16,23 +16,32 @@
 <body>
   <div class="bg" aria-hidden="true"></div>
 
-  <header class="site-header">
+  <div class="site-top">
     <a class="brand" href="#top">Linnea Sablosky</a>
-    <nav class="jump" aria-label="On this page">
-      <a href="#lean">Lean</a>
-      <a href="#shows">Shows</a>
-      <a href="#live">Live</a>
-      <a href="#listen">Listen</a>
-      <a href="#bio">Bio</a>
-      <a href="#hire">Hire</a>
-      <a href="#choir">Choir</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
+    <button
+      class="nav-toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="site-nav"
+    >
+      <span class="nav-toggle-text">Menu</span>
+      <span class="nav-toggle-bars" aria-hidden="true"></span>
+    </button>
+  </div>
+  <nav class="jump" id="site-nav" aria-label="On this page">
+    <a href="#lean">Lean</a>
+    <a href="#shows">Shows</a>
+    <a href="#live">Live</a>
+    <a href="#listen">Listen</a>
+    <a href="#bio">Bio</a>
+    <a href="#hire">Hire</a>
+    <a href="#choir">Choir</a>
+    <a href="#contact">Contact</a>
+  </nav>
 
   <main id="top">
     <section class="hero" aria-label="Introduction">
-      <h1 class="hero-name">Linnea&nbsp;Sablosky</h1>
+      <h1 class="hero-name">Linnea <span class="hero-break">Sablosky</span></h1>
       <p class="hero-line">Musician · Los Angeles</p>
     </section>
 
