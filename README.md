@@ -25,12 +25,36 @@ This is a one page site - once you push your changes, Github Actions automatical
 
 ## HTML cheats
 
+- **tag** = what's inside the `<>` — e.g. `<li>` or `<a>`
+- **block** = everything from an open tag to its close tag — e.g. `<li>.....</li>`
+- **close tag** = a tag with a `/` at the start — e.g. `</li>`
 - `li` = list item
 - `ul` = unordered list
 - `a` = link. Change the `href` to where you want the link to go.
 - `<!--` = start of a comment
 - `-->` = end of a comment
 - To hide something temporarily: put `<!--` before it and `-->` after it. To unhide it, delete those comment markers.
+
+
+
+## Adding / deleting shows
+
+1. Copy a whole `<li>.....</li>` block from another show and paste it in with the others.
+2. Change:
+   - the date in the `<time>` tag (`datetime="YYYY-MM-DD"`) — this is the machine date the site uses
+   - the white text inside the `<time>` block — that's the date people see on screen
+   - the name / description in the `<span class="show-what">`
+   - the link in the `<a>` tag (or delete the whole `<a>...</a>` if there isn't one)
+
+Shows hide themselves on the site 3 days after the date in that `<time>` tag. For multi-day runs, put the date of the **last** show so it stays up until then — not the first night. You can delete old blocks when you add new ones to keep things tidy, but you don't have to do it on a schedule.
+
+Shows display in order based on that `<time>` date. If that ever bothers you I can change it, but it should stay neat without you reordering things by hand.
+
+
+
+## Adding / updating music
+
+Copy a `<li>.....</li>` block from an existing one and paste it wherever you want it in the list. Edit the `href` on the `<a>` to your new URL, and edit the white text between `<a>...</a>` to whatever should show up on the page.
 
 
 
