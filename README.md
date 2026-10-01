@@ -1,14 +1,58 @@
 # Linnea Sablosky — website
 
-One-page static site deployed with GitHub Pages via Actions.
+This is a one page site - once you push your changes, Github Actions automatically updates [linneasablosky.com](http://linneasablosky.com) 🪄
 
-## How to make changes
+## One-time setup
 
-1. GitHub Desktop → Pull if needed → Open in VS Code
-2. Preview: open `index.html` in a browser, or from the terminal in this folder:
-  `python3 -m http.server 4000` → [http://127.0.0.1:4000](http://127.0.0.1:4000)
-3. Edit copy in `index.html`. Colors live in `css/main.css` under `:root`
-4. Commit + Push in GitHub Desktop. Live site updates in a minute or two.
+1. Install [GitHub Desktop](https://desktop.github.com/). Click the Mac icon on your computer — if the chip says Apple, grab the Apple Silicon download; otherwise grab the Intel one.
+2. Go to [the repo](https://github.com/linneapatricia/Linnea-Sablosky-website), click the green **Code** button, and open it in GitHub Desktop. Choose where to save it on your computer.
+3. Install [Visual Studio Code](https://code.visualstudio.com/). Close the chat panel, skip logging in. Click **Open Folder** and go to wherever you saved the repo.
+
+
+
+## Making changes
+
+1. Open GitHub Desktop. Click **Fetch**, then **Pull** if there are changes.
+2. In VS Code, right-click `index.html` → **Open in Integrated Browser**.
+3. Open `index.html` in the text editor, find what you need to change.
+4. Change it, press **Cmd+S** to save.
+5. Check the preview in the browser tab.
+6. If it looks good, go to GitHub Desktop, type a short note about what you changed, and press **Commit**.
+7. Press **Push** in GitHub Desktop.
+8. Watch it update at [Actions](https://github.com/linneapatricia/Linnea-Sablosky-website/actions) — when it's green, refresh [linneasablosky.com](https://linneasablosky.com/) and make sure it looks right. Also check it on your phone.
+
+
+
+## HTML cheats
+
+- `li` = list item
+- `ul` = unordered list
+- `a` = link. Change the `href` to where you want the link to go.
+- `<!--` = start of a comment
+- `-->` = end of a comment
+- To hide something temporarily: put `<!--` before it and `-->` after it. To unhide it, delete those comment markers.
+
+
+
+## Other hints
+
+- Press **Option+Z** once in VS Code so the text wraps instead of making you scroll sideways.
+- **Cmd+X** cuts (copies and deletes).
+- If the live site looks weird or stuck on an old version, try **Cmd+Shift+R** to force-refresh the page.
+
+
+
+## If the site breaks
+
+If something looks bad or weird after a change, check what you did:
+
+- [Commit history on GitHub](https://github.com/linneapatricia/Linnea-Sablosky-website/commits/main/), or History in GitHub Desktop
+
+If you need to undo something, you can right-click a commit in GitHub Desktop History and choose **Reset to Commit** — but probably just call me if you need help here.
+
+## Future: transferring the domain
+
+When you transfer the domain (pick a registrar like GoDaddy or Cloudflare and make an account), go to the GitHub repo → **Settings** → **Pages** and force-enable HTTPS. (And make sure all the DNS records are set up right according to this [Github guide](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site#configuring-an-apex-domain)).
 
 ## Files
 
@@ -16,5 +60,5 @@ One-page static site deployed with GitHub Pages via Actions.
 - `css/main.css` — colors at the top (`:root`)
 - `js/main.js` — menu, nav highlight, auto-hides shows 3 days past `datetime`. Leave alone unless asked.
 - `images/` — drop photos here, then point at them from `index.html` / `css/main.css`
-- Do not edit `.github/`
+- Don't edit `.github/` , robots.txt, .nojekyll, .gitignore, CNAME, etc.
 
