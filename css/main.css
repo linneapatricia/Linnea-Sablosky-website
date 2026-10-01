@@ -235,13 +235,12 @@ main {
 
 .jump a {
   text-decoration: none;
-  opacity: 0.72;
-  transition: opacity 0.2s ease, color 0.2s ease;
+  color: color-mix(in srgb, var(--paper) 78%, transparent);
+  transition: color 0.2s ease;
 }
 
 .jump a:hover,
 .jump a.is-active {
-  opacity: 1;
   color: var(--yellow);
 }
 
@@ -345,6 +344,10 @@ main {
   .photo-bleed {
     margin-inline: clamp(1.25rem, 7vw, 5rem);
   }
+
+  .slab-inner {
+    max-width: 52rem;
+  }
 }
 
 .slab-inner {
@@ -358,7 +361,8 @@ main {
 }
 
 .slab-red-soft {
-  background: color-mix(in srgb, var(--red-soft) 55%, transparent);
+  /* Higher opacity so ink type clears AA over the fixed photo */
+  background: color-mix(in srgb, var(--red-soft) 82%, transparent);
   color: var(--ink);
 }
 
@@ -382,11 +386,10 @@ main {
   color: var(--paper);
 }
 
-/* Warm wash instead of sterile white — picks up the flare photo */
+/* Warm wash — opacity high enough for ink type over the photo */
 .slab-frost {
-  background: color-mix(in srgb, #ffd56a 32%, transparent);
+  background: color-mix(in srgb, #ffd56a 78%, transparent);
   color: var(--ink);
-  text-shadow: 0 1px 0 color-mix(in srgb, var(--paper) 35%, transparent);
 }
 
 .slab-red .btn,
@@ -427,7 +430,8 @@ main {
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  opacity: 0.7;
+  /* Solid mute (not opacity) so contrast stays predictable over the photo */
+  color: color-mix(in srgb, currentColor 72%, gray);
 }
 
 .slab h2 {
@@ -517,7 +521,12 @@ main {
   font-weight: 700;
   font-size: 1.05rem;
   letter-spacing: 0.04em;
-  color: var(--yellow);
+  /* Paper body + yellow underline keeps the accent without failing AA */
+  color: var(--paper);
+  text-decoration: underline;
+  text-decoration-color: var(--yellow);
+  text-decoration-thickness: 0.12em;
+  text-underline-offset: 0.18em;
 }
 
 .show-what {
@@ -602,7 +611,7 @@ main {
   }
 
   .jump a {
-    opacity: 1;
+    color: var(--paper);
     width: fit-content;
   }
 
